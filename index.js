@@ -15,25 +15,22 @@ client.on("messageCreate", async message => {
     const command = args.shift().toLowerCase()
 
     if (
-        message.channel.id === Config.pvu_channel_ID || 
+        message.channel.id === Config.test_channel || 
         message.channel.id === Config.channel_ID
     ) {
         let link = message.content.trim().split('https')
         let link_formated = 'https' + link[1]
-        console.log(link_formated)
         if (link_formated.indexOf("https://") != -1) {
             console.log('abrindo as tabs')
             await opn(link_formated, {
                 app: {
-                    name: opn.apps.edge
+                    name: opn.apps.chrome
                 }
             })        
         }
-
-
     }
 
-    if (message.channel.id === '879826240457043999') {
+    if (message.channel.id === Config.farmers_channel_ID) {
         let m = client.channels.cache.get(Config.channel_ID).send(message.content)
         setTimeout(() => { m.delete() }, 120000)
     }
