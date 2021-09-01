@@ -17,7 +17,7 @@ client.on("message", async message => {
         let m = client.channels.cache.get(Config.channel_ID).send(message.content)
         await setTimeout(() => {
             console.log('Deletando a mensagem')
-             m.delete() 
+             m.delete()
         }, 120000)
     }
 })
