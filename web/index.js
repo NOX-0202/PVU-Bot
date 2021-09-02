@@ -15,8 +15,8 @@ app.get('/socket', (req, res) => {
     res.sendFile(__dirname + '/socket.io.js')
 })
 
-app.get('/getLink', (req, res) => {   
-    activeLink = req.query.link
+app.get('/getLink/:link', (req, res) => {   
+    activeLink = req.params.link
     io.sockets.emit("link", activeLink)
     res.json({'ok': true})
 })
