@@ -14,7 +14,7 @@ client.on("messageCreate", async message => {
 
     let args = message.content.slice(Config.prefix.length).trim().split(/ +/g)
     let link = args[args.length - 1]
-
+    
     if (
       link.indexOf('marketplace.plantvsundead') !== -1 &&
       previousLink !== link
@@ -33,7 +33,7 @@ client.on("messageCreate", async message => {
 
 function makeReq(link) {
 
-  http.get(`https://pvu-bot-backend.herokuapp.com/getLink/${encodeURIComponent(link)}`, resp => {
+  http.get(`http://pvu-bot-backend.herokuapp.com/getLink/${encodeURIComponent(link)}`, resp => {
     let data = '';
   
     // A chunk of data has been received.
