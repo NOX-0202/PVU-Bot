@@ -33,7 +33,7 @@ client.on("messageCreate", async message => {
 
 function makeReq(link) {
 
-  http.get(`http://pvu-bot-backend.herokuapp.com/getLink/${encodeURIComponent(link)}`, resp => {
+  http.get(`http://localhost:4567/getLink/${encodeURIComponent(link)}`, resp => {
     let data = '';
   
     // A chunk of data has been received.
