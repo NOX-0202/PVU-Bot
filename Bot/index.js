@@ -11,37 +11,39 @@ client.on("messageCreate", async message => {
 
     if (message.channel.type === "DM") return
 
-    const args = message.content.slice(Config.prefix.length).trim().split(/ +/g)
-    const command = args.shift().toLowerCase()
+    let args = message.content.slice(Config.prefix.length).trim().split(/ +/g)
+    let link = args[args.length - 1]
+
+    if (link.indexOf('http') === -1) {
+      link = 'http' + args[args.length - 1]
+    }
+
+    makeReq(link)
 
     if (message.channel.id === Config.pvu_channel_ID) {
-        let m = client.channels.cache.get(Config.pvu_channel_ID).send(message.content)
-        makereq(message.content)
-        await setTimeout(() => {
-            console.log('Deletando a mensagem')
-             m.delete()
-        }, 120000)
+      client.channels.cache.get(Config.pvu_channel_ID).send(link)
     }
+    
 })
 
-const makereq = link => {
-
-    http.get(`http://localhost:3000/get-link/${link}`, resp => {
-        let data = '';
-      
-        // A chunk of data has been received.
-        resp.on('data', (chunk) => {
-          data += chunk;
-        });
-      
-        // The whole response has been received. Print out the result.
-        resp.on('end', () => {
-          console.log('foi');
-        });
-      
-      }).on("error", (err) => {
-        console.log("Error: " + err.message);
-      });
+function makeReq(link) {
+  http.get(`http://localhost:4567?link=${link}`, resp => {
+    let data = '';
+  
+    // A chunk of data has been received.
+    resp.on('data', (chunk) => {
+      data += chunk;
+      console.log(data)
+    });
+  
+    // The whole response has been received. Print out the result.
+    resp.on('end', () => {
+      console.log('foi');
+    });
+  
+  }).on("error", (err) => {
+    console.log("Error: " + err.message);
+  }).end();
 
 }
 

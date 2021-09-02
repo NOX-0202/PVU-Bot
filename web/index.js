@@ -1,35 +1,38 @@
 const express = require('express')
-const http = require('http').Server(app)
-const { Server } = require("socket.io");
+const { dirname } = require('path')
+const app = express()
+const server = require('http').createServer(app)
+const io = require('socket.io')(server)
+var activeLink = ''
 
-var app = express()
-const io = new Server(http)
+app.use(express.json())
 
-app.get('/', (req, res) => {  
-    res.sendFile(__dirname + '/index.html');    
+app.get('/', (req, res) => {   
+    res.sendFile(__dirname + '/index.html');
+})
 
-});
+app.get('/socket', (req, res) => {
+    res.sendFile(__dirname + '/socket.io.js')
+})
 
-app.get('/get-link/:link', (req, res) => {  
-    io.emit('link', () =>  { link: req.params.link }); // This will emit the event to all connected sockets
-});
+app.get('/getLink', (req, res) => {   
+    activeLink = req.query.link
+    io.sockets.emit("link", activeLink)
+    res.json({'ok': true})
+})
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
-
-
+    console.log(`a user connected => ${socket.id}`);
+    
     socket.on('link', msg => {
-        io.emit('link', msg);
-    });
-
+        console.log('openning link => ', msg)
+        socket.broadcast.emit('link', { link: msg })
+    })
+    
     socket.on('disconnect', () => {
       console.log('user disconnected');
-    });
-    
+    })
+
 });
 
-
-
-http.listen(3000, () => {
-    console.log('listening on *:3000');
-});
+server.listen(4567)
