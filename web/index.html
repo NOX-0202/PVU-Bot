@@ -6,9 +6,9 @@
     <body>
         <h1>getting links...</h1>
     </body>
-    <script src="http://localhost:4567/socket"></script>
+    <script src="https://pvu-bot-backend.herokuapp.com/socket"></script>
     <script>
-        var socket = io('http://localhost:4567');
+        var socket = io('https://pvu-bot-backend.herokuapp.com/');
 
         socket.on('connect', () => {
             console.log('connected =>', socket.id)
