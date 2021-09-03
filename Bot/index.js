@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] })
 const http = require('https')
-const Config = require("./config.json")
+const Config = require("./config_test.json")
 var previousLink = '1'
 
 client.on("ready", async () => {
