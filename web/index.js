@@ -7,7 +7,7 @@ var cors = require('cors')
 var activeLink = ''
 
 app.use(express.json())
-app.use(cors({ origin: '*' }))
+app.use(cors())
 
 app.get('/', (req, res) => {   
     res.sendFile(__dirname + '/index.html');
