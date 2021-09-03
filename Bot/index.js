@@ -1,7 +1,9 @@
 const Discord = require("discord.js")
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] })
 const http = require('https')
-const Config = require("./config_test.json")
+const Config = require("./config.json")
+
+console.log(process.env)
 var previousLink = '1'
 
 client.on("ready", async () => {
@@ -53,4 +55,4 @@ function makeReq(link) {
 
 }
 
-client.login(process.env.DISCORD || Config.token)
+client.login(Config.token)
