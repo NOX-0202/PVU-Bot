@@ -6,18 +6,8 @@ const io = require('socket.io')(server)
 var cors = require('cors')
 var activeLink = ''
 
-
 app.use(cors())
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header('Access-Control-Allow-Methods', 'GET');
-    next();
-});
-  
 app.use(express.json())
-
 
 app.get('/', (req, res) => {   
     res.sendFile(__dirname + '/index.html');
