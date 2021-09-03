@@ -3,9 +3,13 @@ const { dirname } = require('path')
 const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
+var cors = require('cors')
 var activeLink = ''
 
+
+app.use(cors())
 app.use(express.json())
+
 
 app.get('/', (req, res) => {   
     res.sendFile(__dirname + '/index.html');
