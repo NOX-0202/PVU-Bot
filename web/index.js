@@ -13,14 +13,10 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 })
 
-app.get('/socket', (req, res) => {
-    res.sendFile(__dirname + '/socket.io.js')
-})
-
 app.get('/getLink/:link', async (req, res) => {   
     activeLink = req.params.link
     await io.emit("link", activeLink)
-    res.json({'ok': true})
+    res.send(`abrindo o link ${activeLink}`)
 })
 
 io.on('connection', (socket) => {
