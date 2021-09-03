@@ -56,4 +56,6 @@ function makeReq(link) {
 
 let token = process.env.DISCORD || Config.token
 
+console.log(token)
+
 client.login(token)
