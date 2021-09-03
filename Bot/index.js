@@ -4,7 +4,7 @@ const http = require('https')
 const Config = require("./config.json")
 
 var previousLink = '1'
-
+console.log(process.env.DISCORD)
 client.on("ready", async () => {
     console.log('Bot iniciado')
 })
@@ -55,7 +55,5 @@ function makeReq(link) {
 }
 
 let token = process.env.DISCORD || Config.token
-
-console.log(token)
 
 client.login(token)
