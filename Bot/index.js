@@ -34,7 +34,7 @@ client.on("messageCreate", async message => {
 
 function makeReq(link) {
 
-  http.get(`https://link-getter-pvu.herokuapp.com//getLink/${encodeURIComponent(link)}`, resp => {
+  http.get(`https://link-getter-pvu.herokuapp.com/getLink/${encodeURIComponent(link)}`, resp => {
     let data = '';
   
     // A chunk of data has been received.
