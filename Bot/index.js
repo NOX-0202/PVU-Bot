@@ -4,7 +4,7 @@ const http = require('https')
 const Config = require("./config.json")
 
 var previousLink = '1'
-console.log(process.env.DISCORD)
+
 client.on("ready", async () => {
     console.log('Bot iniciado')
 })
