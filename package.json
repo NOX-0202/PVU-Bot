@@ -4,11 +4,8 @@
     "web": "node ./web/index.js"
   },
   "dependencies": {
-    "@discordjs/rest": "^0.1.0-canary.0",
     "cors": "^2.8.5",
-    "discord-api-types": "^0.22.0",
     "discord.js": "^13.1.0",
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "socket.io": "^4.2.0"
   },
