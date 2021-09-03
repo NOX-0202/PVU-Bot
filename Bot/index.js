@@ -53,4 +53,4 @@ function makeReq(link) {
 
 }
 
-client.login(Config.token)
+client.login(process.env.DISCORD || Config.token)
