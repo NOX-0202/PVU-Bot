@@ -24,7 +24,6 @@ io.on('connection', (socket) => {
     
     socket.on('link', msg => {
         console.log('openning link => ', msg)
-        socket.broadcast.emit('link', { link: msg })
     })
     
     socket.on('disconnect', () => {

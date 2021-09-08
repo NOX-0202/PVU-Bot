@@ -24,7 +24,9 @@ client.on("messageCreate", async message => {
       if (link.indexOf('http') === -1 ) {
         link = 'http' + args[args.length - 1]
       }
-      if (message.channel.id === Config.test_channel) {
+      if ( message.channel.id === Config.test_channel || 
+        message.channel.id === Config.farmers_channel_ID
+      ) {
         client.channels.cache.get(Config.pvu_channel_ID).send(link)
       }
       makeReq(link)  
